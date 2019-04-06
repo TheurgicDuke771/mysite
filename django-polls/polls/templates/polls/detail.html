@@ -1,12 +1,28 @@
-<h1>{{ question.question_text }}</h1>
+{% load static %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/bootstrap.css' %}">
 
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-{% endfor %}
-<input type="submit" value="Vote">
-</form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ question.question_text }}</h1>
+
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            
+            <form action="{% url 'polls:vote' question.id %}" method="post">
+                <div class="form-group">
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                        <label class="form-check-label" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+                    </div>
+            {% endfor %}
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit" value="Vote">Vote</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

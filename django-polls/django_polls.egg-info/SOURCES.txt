@@ -15,7 +15,7 @@ polls/urls.py
 polls/views.py
 polls/migrations/0001_initial.py
 polls/migrations/__init__.py
-polls/static/polls/style.css
+polls/static/polls/bootstrap.css
 polls/static/polls/images/background.gif
 polls/templates/polls/detail.html
 polls/templates/polls/index.html
